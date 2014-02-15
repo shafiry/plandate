@@ -6,9 +6,7 @@ import sendText
 
 url_params = {}
 url_params['term'] = 'movie'
-url_params['location'] = '19123'
 url_params['limit'] = 3
-url_params['radius_filter'] = 15000
 url_params['category_filter'] = 'movietheaters'
 url_params['sort'] = 0
 
@@ -20,9 +18,12 @@ def print_info():
 
     phone = request.args.get('phone_id')
     add = request.args.get('address')
+    range = request.args.get('distance')
     print phone
     print add
-    
+    print range
+    url_params['location'] = add
+    url_params['radius_filter'] = 10000
     """sends the text given 'phone'"""
     response = sendText.requester('api.yelp.com', '/v2/search', url_params, '0px8qDLNaYLpwVHlGeyNzQ', 'VYdp1bHYoPayFF9Mp0Q4RP328n0','RoXmcii1RiXkAoFh1uwMZpC6_5k2iVyq', '0bbsAocDgcBsua5WvOzxU6NxGUY')
     venue = ''

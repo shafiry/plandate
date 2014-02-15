@@ -6,18 +6,13 @@
     $('a#sub_plandate').bind('click', function() {
       $.getJSON($SCRIPT_ROOT + '/_print_info', {
         phone_id: $('input[name="phone_id"]').val(),
-        address: $('input[name="address"]').val()
+        address: $('input[name="address"]').val(),
+        distance: $('input[name="distance"]').val())
       }, function(data) {
         $("#result").text(data.result);
       });
       return true; //true doesn't allow multiple instances
     });
-    $('input[type=text]').bind('keydown', function(e) {
-      if (e.keyCode == 13) {
-        submit_form(e);
-      }
-    });
-
   });
 
 </script>
@@ -25,7 +20,8 @@
       <div class="text-center">
         <h1 class="form-signin-heading">PlanDate</h1>
 	<input class="form-control" type=text placeholder="Phone Number" name=phone_id><br>
- 	<input class="form-control" type=text placeholder="Address" name=address><br>
+ 	<input class="form-control" type=text placeholder="Zip Code" name=address><br>
+  	<input class="form-control" type=text placeholder="Max distance" name=distance><br>
   	<span id=result></span>
 	<a class="btn btn-lg btn-primary btn-block" href=# id=sub_plandate>Start this date</a>
       </div>
