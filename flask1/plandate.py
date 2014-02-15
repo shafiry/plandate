@@ -1,17 +1,19 @@
 from flask import Flask, jsonify, render_template, request
-app = Flask(__name__)
+import pymongo
 
+app = Flask(__name__)
 
 @app.route('/_print_info')
 def print_info():
     """returns the data"""
-    a = request.args.get('phone')
-    b = request.args.get('address')
-    return jsonify(phone=a, address=b)
+    phone = request.args.get('phone_id')
+    add   = request.args.get('address')
+    return jsonify(result = phone)
 
 
 @app.route('/')
 def index():
+    cur = get_db().cursor()
     return render_template('index.html')
 
 
