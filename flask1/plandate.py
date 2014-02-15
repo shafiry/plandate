@@ -13,7 +13,6 @@ def print_info():
 
 @app.route('/')
 def index():
-    cur = get_db().cursor()
     return render_template('index.html')
 
 
