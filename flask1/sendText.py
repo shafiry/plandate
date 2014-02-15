@@ -45,12 +45,4 @@ def requester(host, path, url_params, consumer_key, consumer_secret, token, toke
     response = json.loads(error.read())
 
   return response
-"""
-response = requester('api.yelp.com', '/v2/search', url_params, '0px8qDLNaYLpwVHlGeyNzQ', 'VYdp1bHYoPayFF9Mp0Q4RP328n0', 'RoXmcii1RiXkAoFh1uwMZpC6_5k2iVyq', '0bbsAocDgcBsua5WvOzxU6NxGUY')
-for key,value in response["businesses"][0].iteritems():
-  if key == 'name':
-    print value
-  if key == 'location':
-    for i in range(0,len(value['display_address'])):
-      print value['display_address'][i]
-"""
+
