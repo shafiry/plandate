@@ -1,1 +1,1 @@
-web: gunicorn flask1/plandate.py
+web: gunicorn plandate:py

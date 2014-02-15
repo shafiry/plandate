@@ -20,20 +20,11 @@ def print_info():
     phone = request.args.get('phone_id')
     add = request.args.get('address')
     dist = request.args.get('distance')
-    print phone
-    print add
-    print dist
     url_params['location'] = add
     url_params['radius_filter'] = 10000
     """sends the text given 'phone'"""
     response = sendText.requester('api.yelp.com', '/v2/search', url_params, '0px8qDLNaYLpwVHlGeyNzQ', 'VYdp1bHYoPayFF9Mp0Q4RP328n0','RoXmcii1RiXkAoFh1uwMZpC6_5k2iVyq', '0bbsAocDgcBsua5WvOzxU6NxGUY')
     venue = ''
-    for key, value in response["businesses"][0].iteritems():
-        if key == 'name':
-            venue = value
-        if key == 'location':
-            for i in range(0,len(value['display_address'])):
-                print value['display_address'][i]
     account_sid = "ACfe656ed49f19a12b8440cb191158f0c9"
     auth_token = "8d29d5cc81e4062e1521237983c39b21"
     client = TwilioRestClient(account_sid, auth_token)    
