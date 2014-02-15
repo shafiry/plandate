@@ -1,11 +1,17 @@
 from flask import Flask, jsonify, render_template, request
+<<<<<<< HEAD
 from twilio.rest import TwilioRestClient
 app = Flask(__name__)
+=======
+import pymongo
+>>>>>>> ff028208c0651ab64a89efa974eb737d711ed4b0
 
+app = Flask(__name__)
 
 @app.route('/_print_info')
 def print_info():
     """returns the data"""
+<<<<<<< HEAD
     a = request.args.get('phone')
     b = request.args.get('address')
     print a
@@ -16,6 +22,11 @@ def print_info():
     message = client.messages.create(to=a, from_="+15162724635",body="Welcome to PlanDate! Creating your ideal date now. Please wait for further instructions..")
 
     return jsonify(phone=a, address=b)
+=======
+    phone = request.args.get('phone_id')
+    add   = request.args.get('address')
+    return jsonify(result = phone)
+>>>>>>> ff028208c0651ab64a89efa974eb737d711ed4b0
 
 
 @app.route('/')

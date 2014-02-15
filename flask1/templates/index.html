@@ -5,10 +5,10 @@
   $(function() {
     $('a#sub_plandate').bind('click', function() {
       $.getJSON($SCRIPT_ROOT + '/_print_info', {
-        phone: $('input[name="phone"]').val(),
+        phone_id: $('input[name="phone_id"]').val(),
         address: $('input[name="address"]').val()
       }, function(data) {
-        $("#result").text(data.phone);
+        $("#result").text(data.result);
       });
       return true; //true doesn't allow multiple instances
     });
@@ -18,7 +18,7 @@
    <div class="container" style="max-width:400px; margin-top:15%;">
       <div class="text-center">
         <h1 class="form-signin-heading">PlanDate</h1>
-	<input class="form-control" type=text placeholder="Phone Number" name=phone><br>
+	<input class="form-control" type=text placeholder="Phone Number" name=phone_id><br>
  	<input class="form-control" type=text placeholder="Address" name=address><br>
   	<span id=result></span>
 	<a class="btn btn-lg btn-primary btn-block" href=# id=sub_plandate>Start this date</a>
