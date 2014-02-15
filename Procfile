@@ -1,1 +1,1 @@
-web: gunicorn plandate:py
+web: gunicorn plandate:app
