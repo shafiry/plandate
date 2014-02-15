@@ -19,7 +19,6 @@ def requester(host, path, url_params, consumer_key, consumer_secret, token, toke
   if url_params:
     encoded_params = urllib.urlencode(url_params)
   url = 'http://%s%s?%s' % (host, path, encoded_params)
-  print 'URL: %s' % (url,)
 
   # Sign the URL                                                                                                                                                                     
   consumer = oauth2.Consumer(consumer_key, consumer_secret)
@@ -32,7 +31,6 @@ def requester(host, path, url_params, consumer_key, consumer_secret, token, toke
   token = oauth2.Token(token, token_secret)
   oauth_request.sign_request(oauth2.SignatureMethod_HMAC_SHA1(), consumer, token)
   signed_url = oauth_request.to_url()
-  print 'Signed URL: %s\n' % (signed_url,)
 
   # Connect                                                                                                                                                                          
   try:
@@ -45,4 +43,3 @@ def requester(host, path, url_params, consumer_key, consumer_secret, token, toke
     response = json.loads(error.read())
 
   return response
-

@@ -1,7 +1,8 @@
-from flask import Flask, jsonify, render_template, request
+from flask import Flask, jsonify, render_template, request, redirect
+import twilio.twiml
 from twilio.rest import TwilioRestClient
 import random
-
+import os
 import sendText
 """import pymongo"""
 
@@ -10,7 +11,7 @@ url_params['term'] = 'date'
 url_params['limit'] = 10
 url_params['sort'] = 0
 
-app = Flask(__name__)
+app = Flask(__name__, static_url_path = "", static_folder = "static")
 
 @app.route('/_print_info')
 def print_info():
@@ -41,6 +42,7 @@ def print_info():
         if key == 'location':
             for i in range(0,len(value['display_address'])):
                 venueLocation.append(value['display_address'][i])
+    venue = ''
     account_sid = "ACfe656ed49f19a12b8440cb191158f0c9"
     auth_token = "8d29d5cc81e4062e1521237983c39b21"
     client = TwilioRestClient(account_sid, auth_token)    
@@ -53,6 +55,14 @@ def print_info():
 def index():
     return render_template('index.html')
 
+
+@app.route("/", methods=['GET', 'POST'])
+def hello_monkey():
+    """Respond to incoming calls with a simple text message."""
+ 
+    resp = twilio.twiml.Response()
+    resp.message("Hello, Mobile Monkey")
+    return str(resp)
 
 if __name__ == '__main__':
     app.run()
