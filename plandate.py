@@ -14,8 +14,6 @@ url_params['sort'] = 0
 app = Flask(__name__)
 app.config.from_pyfile('local_settings.py')
 
-next_up = dict()
-
 @app.route("/respond", methods=['POST'])
 def respond():
     """Respond to incoming requests."""
@@ -62,9 +60,6 @@ def print_info():
     auth_token = "8d29d5cc81e4062e1521237983c39b21"
     client = TwilioRestClient(account_sid, auth_token)    
     message = client.messages.create(to=phone, from_="+15162724635",body="Welcome to PlanDate! You should go to:\n" + venueName +"\n"+ "\n".join(venueLocation) + "\n Reply 'next' for next plan, 'done' if finished.")
-    
-    next_up = response["businesses"].copy()
-
     return jsonify(result = phone)
 
 
