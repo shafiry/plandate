@@ -14,6 +14,11 @@ url_params['sort'] = 0
 app = Flask(__name__)
 app.config.from_pyfile('local_settings.py')
 
+phone = ""
+add = ""
+radius = ""
+activityLevel = ""
+
 @app.route("/respond", methods=['POST'])
 def respond():
     """Respond to incoming requests."""
@@ -55,10 +60,10 @@ def respond():
 @app.route('/_print_info')
 def print_info():
     """returns the data"""
-    global phone = request.args.get('phone_id')
-    global add = request.args.get('address')
-    global radius = request.args.get('distance')
-    global activityLevel = request.args.get('activity')
+    phone = request.args.get('phone_id')
+    add = request.args.get('address')
+    radius = request.args.get('distance')
+    activityLevel = request.args.get('activity')
 
     if activityLevel == 3:
         url_params['category_filter'] = 'active'
