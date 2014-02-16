@@ -26,11 +26,14 @@ def respond():
     else:
         with open('hackers.csv', 'rb') as f:
             reader = csv.reader(f)
+            found = False
             for row in reader:
                 if num in row:
-		    print row
-		    break
-            resp.sms("Next place is:")
+		    resp.sms(row)
+		    found = True
+                    break
+            if not found:
+                resp.sms("Next place is:")
     return str(resp)
 
 @app.route('/_print_info')
