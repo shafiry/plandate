@@ -12,17 +12,13 @@ url_params['sort'] = 0
 
 app = Flask(__name__)
 
-callers = dict()
 
 @app.route("/_web_hook", methods=['POST'])
 def handle_request():
     """Respond to incoming calls with a simple text message."""
     from_number = request.values.get('From', None)
     resp = twilio.twiml.Response()
-    if from_number in callers:
-        resp.say("Hello " + str(callers[from_number]))
-    else:
-        resp.say("Hello Monkey")
+    resp.say("Hello " + str(callers[from_number]))
     return str(resp)
 
 @app.route('/_print_info')
