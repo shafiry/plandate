@@ -1,9 +1,10 @@
 from flask import Flask, jsonify, render_template, request, redirect
-import twilio.twiml
+from twilio import twiml
 from twilio.rest import TwilioRestClient
 import random
 import os
 import sendText
+import re
 
 url_params = {}
 url_params['term'] = 'date'
@@ -11,10 +12,10 @@ url_params['limit'] = 10
 url_params['sort'] = 0
 
 app = Flask(__name__)
+app.config.from_pyfile('local_settings.py')
 
-
-@app.route("/_web_hook", methods=['POST'])
-def handle_request():
+@app.route("/respond", methods=['POST'])
+def respond():
     """Respond to incoming requests."""
     resp = twilio.twiml.Response()
     resp.say("Hello Monkey")
