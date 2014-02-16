@@ -5,6 +5,7 @@ import random
 import os
 import sendText
 import re
+import cvs
 
 url_params = {}
 url_params['term'] = 'date'
@@ -19,20 +20,32 @@ def respond():
     """Respond to incoming requests."""
     resp = twiml.Response()
     body = request.form['Body']
-    if "done" in body:
+    num = request.values.get('From', None)
+    if "done" in body.lower():
         resp.sms("Hope you enjoyed your date! Thank you for using PlanDate!")
     else:
-        resp.sms("Next place is:")
+        with open('hackers.csv', 'rb') as f:
+            reader = csv.reader(f)
+            for row in reader:
+                if num in row:
+		    print row
+		    break
+            resp.sms("Next place is:")
     return str(resp)
 
 @app.route('/_print_info')
 def print_info():
     """returns the data"""
-
     phone = request.args.get('phone_id')
     add = request.args.get('address')
     radius = request.args.get('distance')
     activityLevel = request.args.get('activity')
+
+    with open('hackers.csv', 'wb') as csvfile:
+        spamwriter = csv.writer(csvfile, delimiter=' ',
+                            quotechar='|', quoting=csv.QUOTE_MINIMAL)
+        spamwriter.writerow([phone, add, radius, activityLevel])
+
     if activityLevel == 3:
         url_params['category_filter'] = 'active'
     elif activityLevel == 2:
