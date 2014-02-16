@@ -11,7 +11,7 @@ url_params['term'] = 'date'
 url_params['limit'] = 10
 url_params['sort'] = 0
 
-app = Flask(__name__, static_url_path = "", static_folder = "static")
+app = Flask(__name__)
 
 """"callers = {
     "+14158675309": "Curious George",
@@ -22,7 +22,7 @@ app = Flask(__name__, static_url_path = "", static_folder = "static")
 
 @app.route("/",methods=['GET','POST'])
 def hello_monkey():
-    """Respond and greet the caller by name."""
+    #Respond and greet the caller by name.
     
     from_number = request.values.get('From', None)
     if from_numer in callers:
@@ -34,7 +34,7 @@ def hello_monkey():
     resp.message(message)
 
     return str(resp)
-    """
+"""
 
 @app.route('/_print_info')
 def print_info():
