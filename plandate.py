@@ -16,9 +16,9 @@ app = Flask(__name__)
 @app.route("/_web_hook", methods=['POST'])
 def handle_request():
     """Respond to incoming calls with a simple text message."""
-    from_number = request.values.get('From', None)
+    #from_number = request.values.get('From', None)
     resp = twilio.twiml.Response()
-    resp.say("Hello "+ from_number)
+    resp.say("Hello you")
     return str(resp)
 
 @app.route('/_print_info')
