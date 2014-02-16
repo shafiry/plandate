@@ -4,6 +4,7 @@ from twilio.rest import TwilioRestClient
 import random
 import os
 import sendText
+from people import callers
 
 url_params = {}
 url_params['term'] = 'date'
@@ -15,8 +16,12 @@ app = Flask(__name__)
 @app.route("/_web_hook", methods=['POST'])
 def handle_request():
     """Respond to incoming calls with a simple text message."""
+    from_number = request.values.get('From', None)
     resp = twilio.twiml.Response()
-    resp.message("Hello, Mobile Monkey")
+    if from_number in callers:
+        resp.say("Hello " + callers[from_number])
+    else:
+        resp.say("Hello Monkey")
     return str(resp)
 
 @app.route('/_print_info')
@@ -27,6 +32,7 @@ def print_info():
     add = request.args.get('address')
     radius = request.args.get('distance')
     activityLevel = request.args.get('activity')
+    callers[phone] = (add, radius, activityLevel)
     if activityLevel == 3:
         url_params['category_filter'] = 'active'
     elif activityLevel == 2:
@@ -53,7 +59,6 @@ def print_info():
     auth_token = "8d29d5cc81e4062e1521237983c39b21"
     client = TwilioRestClient(account_sid, auth_token)    
     message = client.messages.create(to=phone, from_="+15162724635",body="Welcome to PlanDate. You should go to:\n" + venueName +"\n"+ "\n".join(venueLocation))
-
     return jsonify(result = phone)
 
 
