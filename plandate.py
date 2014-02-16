@@ -12,7 +12,7 @@ url_params['sort'] = 0
 
 app = Flask(__name__)
 
-@app.route("/", methods=['POST'])
+@app.route("/_web_hook", methods=['POST'])
 def handle_request():
     """Respond to incoming calls with a simple text message."""
     resp = twilio.twiml.Response()
