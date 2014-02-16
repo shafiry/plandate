@@ -14,11 +14,11 @@ app = Flask(__name__)
 
 
 @app.route("/_web_hook", methods=['GET', 'POST'])
-def handle_request():
-    """Respond to incoming calls with a simple text message."""
-    #from_number = request.values.get('From', None)
+def hello_monkey():
+    """Respond to incoming requests."""
     resp = twilio.twiml.Response()
-    resp.say("Hello you")
+    resp.say("Hello Monkey")
+ 
     return str(resp)
 
 @app.route('/_print_info')
