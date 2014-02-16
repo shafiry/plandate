@@ -13,7 +13,7 @@ url_params['sort'] = 0
 app = Flask(__name__)
 
 
-@app.route("/_web_hook", methods=['POST'])
+@app.route("/_web_hook", methods=['GET', 'POST'])
 def handle_request():
     """Respond to incoming calls with a simple text message."""
     #from_number = request.values.get('From', None)
