@@ -22,12 +22,17 @@
         <h1 class="form-signin-heading">PlanDate</h1>
 	<input class="form-control" type=text placeholder="Phone Number" name=phone_id><br>
  	<input class="form-control" type=text placeholder="City or Zip Code" name=address><br>
-  	<!--<input class="form-control" type=text placeholder="Range (meters)" name=distance><br>-->
-  	<input class="form-control" type=text placeholder="Activity Level (1-3)" name=activity><br>
+	<div id="activity" class="btn group btn-group-justified">
+		<h3>Activity Level</h3>
+    		<button type="radio" id="ac1" name="activity" value="1">Relax</button>
+    		<button type="radio" id="ac2" name="activity" value="2">Fun</button>
+    		<button type="radio" id="ac3" name="activity" value="3">Adventure</button>
+  	</div>
 	<div id="distance" class="btn group btn-group-justified">
-    		<input type="radio" id="radio1" name="distance" value="3200">Choice 1</input>
-    		<input type="radio" id="radio2" name="distance" value="8000">Choice 2</input>
-    		<input type="radio" id="radio3" name="distance" value="16000">Choice 3</input>
+		<h3>How far?</h3>
+    		<input type="radio" id="di1" name="distance" value="3200">2 miles</input>
+    		<input type="radio" id="di2" name="distance" value="8000">5 miles</input>
+    		<input type="radio" id="di3" name="distance" value="16000">10 miles</input>
   	</div>
   	<span id=result></span>
 	<a class="btn btn-lg btn-primary btn-block" href=# id=sub_plandate>Start this date</a>
