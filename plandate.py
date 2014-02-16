@@ -50,9 +50,9 @@ def print_info():
     return jsonify(result = phone)
 
 
-@app.route('/')
-def index():
-    return render_template('index.html')
+#@app.route('/')
+#def index():
+#    return render_template('index.html')
 
 @app.route("/", methods=['GET', 'POST'])
 def hello_monkey():
