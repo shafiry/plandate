@@ -19,7 +19,7 @@ def handle_request():
     from_number = request.values.get('From', None)
     resp = twilio.twiml.Response()
     if from_number in callers:
-        resp.say("Hello " + callers[from_number])
+        resp.say("Hello " + str(callers[from_number]))
     else:
         resp.say("Hello Monkey")
     return str(resp)
