@@ -5,7 +5,6 @@ import random
 import os
 import sendText
 import re
-import csv
 
 url_params = {}
 url_params['term'] = 'date'
@@ -24,16 +23,7 @@ def respond():
     if "done" in body.lower():
         resp.sms("Hope you enjoyed your date! Thank you for using PlanDate!")
     else:
-        with open('hackers.csv', 'rb') as f:
-            reader = csv.reader(f)
-            found = False
-            for row in reader:
-                if num in row:
-		    resp.sms(row)
-		    found = True
-                    break
-            if not found:
-                resp.sms("Next place is:")
+	print_info()
     return str(resp)
 
 @app.route('/_print_info')
@@ -43,11 +33,6 @@ def print_info():
     add = request.args.get('address')
     radius = request.args.get('distance')
     activityLevel = request.args.get('activity')
-
-    with open('hackers.csv', 'wb') as csvfile:
-        spamwriter = csv.writer(csvfile, delimiter=' ',
-                            quotechar='|', quoting=csv.QUOTE_MINIMAL)
-        spamwriter.writerow([phone, add, radius, activityLevel])
 
     if activityLevel == 3:
         url_params['category_filter'] = 'active'
