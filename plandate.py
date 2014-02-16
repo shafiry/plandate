@@ -20,9 +20,9 @@ def respond():
     resp = twiml.Response()
     body = request.form['Body']
     if "done" in body:
-        response.sms("Goodbye!")
+        resp.sms("Goodbye!")
     else:
-        response.sms("Next place is:")
+        resp.sms("Next place is:")
     return str(resp)
 
 @app.route('/_print_info')
