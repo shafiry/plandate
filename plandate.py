@@ -18,7 +18,7 @@ def handle_request():
     """Respond to incoming calls with a simple text message."""
     from_number = request.values.get('From', None)
     resp = twilio.twiml.Response()
-    resp.say("Hello " + str(callers[from_number]))
+    resp.say("Hello "+ from_number)
     return str(resp)
 
 @app.route('/_print_info')
@@ -29,7 +29,6 @@ def print_info():
     add = request.args.get('address')
     radius = request.args.get('distance')
     activityLevel = request.args.get('activity')
-    callers[phone] = (add, radius, activityLevel)
     if activityLevel == 3:
         url_params['category_filter'] = 'active'
     elif activityLevel == 2:
@@ -62,7 +61,6 @@ def print_info():
 @app.route("/")
 def index():
     return render_template('index.html')
-
 
 
 if __name__ == '__main__':
