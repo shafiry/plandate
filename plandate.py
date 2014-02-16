@@ -13,7 +13,7 @@ url_params['sort'] = 0
 
 app = Flask(__name__, static_url_path = "", static_folder = "static")
 
-callers = {
+""""callers = {
     "+14158675309": "Curious George",
     "+14158675310": "Boots",
     "+14158675311": "Virgil",
@@ -34,7 +34,7 @@ def hello_monkey():
     resp.message(message)
 
     return str(resp)
-    
+    """
 
 @app.route('/_print_info')
 def print_info():
