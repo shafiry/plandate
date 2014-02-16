@@ -50,17 +50,11 @@ def print_info():
     return jsonify(result = phone)
 
 
-#@app.route('/')
-#def index():
-#    return render_template('index.html')
-
 @app.route("/", methods=['GET', 'POST'])
-def hello_monkey():
-    """Respond to incoming calls with a simple text message."""
- 
+def index():
     resp = twilio.twiml.Response()
     resp.message("Hello, Mobile Monkey")
-    return str(resp)
+    return render_template('index.html')
 
 if __name__ == '__main__':
     app.run(debug=True)
