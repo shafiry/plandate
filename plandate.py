@@ -5,7 +5,7 @@ import random
 import os
 import sendText
 import re
-import cvs
+import csv
 
 url_params = {}
 url_params['term'] = 'date'
