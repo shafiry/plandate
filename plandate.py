@@ -25,17 +25,7 @@ def respond():
     if "done" in body.lower():
         resp.sms("Hope you enjoyed your date! Thank you for using PlanDate!")
     else:
-    	venueName = ''
-    	venueLocation = []
-	for key, value in next_up[random.randint(0,4)].iteritems():
-            if key == 'name':
-                venueName = value
-            if key == 'location':
-                for i in range(0,len(value['display_address'])):
-                    venueLocation.append(value['display_address'][i])
-        resp.sms("Next up:\n" + venueName +"\n"+ "\n".join(venueLocation) + "\n Reply 'next' for next plan, 'done' if finished.")
-
-	
+        resp.sms("Fill out the form at: http://plandate.herokuapp.com/")
     return str(resp)
 
 @app.route('/_print_info')
