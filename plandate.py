@@ -33,7 +33,7 @@ def respond():
             if key == 'location':
                 for i in range(0,len(value['display_address'])):
                     venueLocation.append(value['display_address'][i])
-        res.sms("Next up:\n" + venueName +"\n"+ "\n".join(venueLocation) + "\n Reply 'next' for next plan, 'done' if finished.")
+        resp.sms("Next up:\n" + venueName +"\n"+ "\n".join(venueLocation) + "\n Reply 'next' for next plan, 'done' if finished.")
 
 	
     return str(resp)
