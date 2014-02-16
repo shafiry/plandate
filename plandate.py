@@ -12,6 +12,13 @@ url_params['sort'] = 0
 
 app = Flask(__name__)
 
+@app.route("/", methods=['POST'])
+def handle_request():
+    """Respond to incoming calls with a simple text message."""
+    resp = twilio.twiml.Response()
+    resp.message("Hello, Mobile Monkey")
+    return str(resp)
+
 @app.route('/_print_info')
 def print_info():
     """returns the data"""
@@ -50,11 +57,11 @@ def print_info():
     return jsonify(result = phone)
 
 
-@app.route("/", methods=['GET', 'POST'])
+@app.route("/")
 def index():
-    resp = twilio.twiml.Response()
-    resp.message("Hello, Mobile Monkey")
     return render_template('index.html')
 
+
+
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run()
