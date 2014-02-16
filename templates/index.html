@@ -10,7 +10,7 @@
         distance: $('input[name="distance"]').val(),
         activity: $('input[name="activity"]').val()
       }, function(data) {
-        $("#result").text("Info on the way to " + data.result + "<br>Enjoy!");
+        $("#result").text("Info on the way to " + data.result + "\nEnjoy!");
       });
       return false; //true doesn't allow multiple instances
     });
