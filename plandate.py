@@ -18,7 +18,11 @@ app.config.from_pyfile('local_settings.py')
 def respond():
     """Respond to incoming requests."""
     resp = twiml.Response()
-    resp.sms("Hello Monkey")
+    body = request.form['Body']
+    if "done" in body:
+        response.sms("Goodbye!")
+    else:
+        response.sms("Next place is:")
     return str(resp)
 
 @app.route('/_print_info')
