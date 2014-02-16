@@ -17,8 +17,8 @@ app.config.from_pyfile('local_settings.py')
 @app.route("/respond", methods=['POST'])
 def respond():
     """Respond to incoming requests."""
-    resp = twilio.twiml.Response()
-    resp.say("Hello Monkey")
+    resp = twiml.Response()
+    resp.sms("Hello Monkey")
     return str(resp)
 
 @app.route('/_print_info')
