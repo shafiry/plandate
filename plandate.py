@@ -13,7 +13,7 @@ url_params['sort'] = 0
 app = Flask(__name__)
 
 
-@app.route("/_web_hook", methods=['GET', 'POST'])
+@app.route("/_web_hook", methods=['POST'])
 def hello_monkey():
     """Respond to incoming requests."""
     resp = twilio.twiml.Response()
