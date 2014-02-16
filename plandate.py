@@ -4,7 +4,6 @@ from twilio.rest import TwilioRestClient
 import random
 import os
 import sendText
-from people import callers
 
 url_params = {}
 url_params['term'] = 'date'
@@ -12,6 +11,8 @@ url_params['limit'] = 10
 url_params['sort'] = 0
 
 app = Flask(__name__)
+
+callers = dict()
 
 @app.route("/_web_hook", methods=['POST'])
 def handle_request():
